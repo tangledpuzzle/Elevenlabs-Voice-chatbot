@@ -25,7 +25,7 @@
   </ol>
   
   ```bash
-  git clone https://github.com/willian-rodrigues/face-detection.git
+  git clone https://github.com/tangledpuzzle/face-detection.git
   ```
   
   <ol start="2">
