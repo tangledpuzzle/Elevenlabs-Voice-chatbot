@@ -55,16 +55,4 @@
       </p>
     </li>
   </ol>
-  <h2>Tecnologias utilizadas</h2>
-  <ul>
-    <li><a href="https://reactjs.org/" target="_new">React</a></li>
-    <li>
-      <a href="https://github.com/justadudewhohacks/face-api.js/" target="_new"
-        >face-api.js</a
-      >
-    </li>
-    <li>
-      <a href="https://www.typescriptlang.org/" target="_new">TypeScript</a>
-    </li>
-  </ul>
 </div>
