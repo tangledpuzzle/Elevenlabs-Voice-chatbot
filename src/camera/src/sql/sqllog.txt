@@ -1,1 +1,0 @@
-update-5-6-2017.sql - allows Idle mode options and future proofs the mode field for other modes.

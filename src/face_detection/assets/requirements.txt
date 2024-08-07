@@ -1,5 +1,0 @@
-celery==4.1.0
-#git+https://github.com/celery/celery@master#egg=celery
-redis==2.10.6
-#kombu==4.2.1
-kombu==4.1.0
