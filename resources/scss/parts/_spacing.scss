@@ -1,0 +1,16 @@
+
+.nmt {
+  margin-top: 0 !important;
+}
+
+.nmb {
+  margin-bottom: 0 !important;
+}
+
+@include marginGenerator($marginList);
+
+//@include paddingGenerator($paddingList);
+
+@mixin baseMargin () {
+  @include marginGenerator($marginList);
+}

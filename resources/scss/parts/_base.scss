@@ -1,0 +1,112 @@
+html, body, *, :after, :before {
+  outline: none !important;
+  box-sizing: border-box;
+}
+
+b, strong {
+  @for $i from 7 to 12 {
+    $listKeys: map-keys($fontWeights);
+    $name: nth($listKeys, $i);
+    &.#{$name} {
+      @include fw($name);
+    }
+  }
+}
+
+p {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+span {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+b {
+  @include fw(bold);
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+i {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  font-style: italic;
+}
+
+a {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+strong {
+  @include fw(semibold);
+}
+
+@each $name, $val in $fontWeights {
+  .fw-#{$name + ""} {
+    @include fw($name)
+  }
+}
+
+sup {
+  display: inline-block;
+  top: auto;
+  font-size: 50%;
+  transform: translateY(-9px);
+}
+
+mark {
+  background-color: transparent;
+}
+
+.img-wrapper {
+  display: inline-flex;
+  position: relative;
+
+  .desktop {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  @include phone {
+    .desktop {
+      display: none;
+    }
+
+    .mobile {
+      display: block;
+    }
+  }
+}
+
+button {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}

@@ -1,58 +1,68 @@
-<img src="https://www.cnet.com/a/img/resize/d3ea8edc361a21e5cb3988df699f6c2ab118d014/hub/2019/03/15/d0e98f89-88ab-436f-8f6d-503a95eb57f0/facial-recognition-face-id-password-6.jpg?auto=webp&fit=crop&height=675&width=1200" />
+# AVA - AI assistant
 
-<div class="markdown prose w-full break-words dark:prose-invert dark">
-  <h1>Webcam Face Detection</h1>
-  <p>
-    Projeto desenvolvido em React utilizando a biblioteca
-    <a href="https://github.com/justadudewhohacks/face-api.js/" target="_new"
-      >face-api.js</a
-    >
-    para detectar rostos em tempo real através da webcam do dispositivo.
-  </p>
-  <h2>Funcionalidades</h2>
-  <ul>
-    <li>Detecta rostos na imagem da webcam</li>
-    <li>Adiciona pontos de referência facial aos resultados</li>
-    <li>Adiciona a idade e o gênero aos resultados</li>
-    <li>Adiciona as expressões faciais aos resultados</li>
-    <li>Desenha os resultados na tela em tempo real</li>
-    <li>Exibe os resultados no console</li>
-    <li>Inicia e para a captura de vídeo através do botão "Iniciar"/"Parar"</li>
-  </ul>
-  <h2>Como usar</h2>
-  <ol>
-    <li>Clone o repositório:</li>
-  </ol>
+## Description
+The project aims to develop a Chatbot with talking avatar animation. The goal of the project is developing a Chatbot that can make real-time conversation with customer based on voice.
+
+The chatbot will have specific persona of busy doctor.
+
+The system consists of STT engine, Chat engine, TTS engine and avatar synthesis engine.
+
+The system will use Elevenlabs as TTS engine, Deepgram as STT, GPT-4 as Chat engine and D-ID for avatar synthesis.
+
+The system will use function calling feature from OpenAI to track the state of the conversation and generate responses based on the conversation state.
+
+The platform uses React for frontend development and Python FastAPI for backend, GitHub for version control. Docker will be employed for creating development environment.
+
+## Solution
+  To ensure the successful development of the project, the following solutions will be key:
+
+### TTS Engine
+
+  For the MVP product, we will use Elevenlabs as TTS engine to generate high-quality audios based on text. For MVP, we will implement streaming process to minimize delay of TTS engine. 
   
-  ```bash
-  git clone https://github.com/tangledpuzzle/face-detection.git
-  ```
+### STT Engine
+
+  For the MVP product, we will use Deepgram API for STT engine. We will streaming the STT process to improve system performance. 
   
-  <ol start="2">
-    <li>Instale as dependências:</li>
-  </ol>
+### Chat Engine
+  We will use GPT-4-turbo model as chat engine to generate responses based on the user’s query.
+  We will use function calling feature to track the state of the conversation. 
   
-   ```bash
-  npm install
-  ```
- 
-  <ol start="3">
-    <li>Inicie o servidor de desenvolvimento:</li>
-  </ol>
-  
-  ```bash
-  npm run dev
-  ```
-  
-  <ol start="5">
-    <li>
-      <p>Abra o navegador em <code>http://localhost:3000</code></p>
-    </li>
-    <li>
-      <p>
-        Clique no botão "Iniciar" para iniciar a captura de vídeo e a detecção
-        de rostos. Clique no botão "Parar" para encerrar a captura de vídeo.
-      </p>
-    </li>
-  </ol>
-</div>
+### Avatar Synthesis
+  The platform will use D-ID to synthesize avatars based on audio. We will implement streaming process to minimize delay of avatar synthesis. 
+
+
+## Development
+
+### Branches of the repository, convention
+
+* Develop - Main branch for development
+* Fix - {#Task_ID}/fix/{fix_description}
+* Feature - {#Task_ID}/feature/{feature_description}
+* Master - Production version of the project
+* Release - release/{dd.mm.yyyy}
+* 
+
+### Issue tracker
+
+Gitlab's built-in [issue tracker](https://git.vivanti.eu/web/ava/-/issues) will be used in this project.
+
+
+## Design
+
+Can be found in figma [here](https://www.figma.com/file/fJd1GptHW7SV8zrOqRGX2g/Ava-Landing?type=design&node-id=0-1&mode=design&t=5cbz1KFYz07kJSe5-0).
+
+
+## Markup
+
+For HTML visit [markup branch](https://git.vivanti.eu/web/ava/-/tree/markup)
+
+## Servers
+
+Staging is located at Ubuntu server, IP 188.166.121.50.
+
+## How to Run
+
+1. Change <api_key_here> to valid api keys in `api.json` and `config.json`
+2. Run `npm install` or `yarn install` and `npm run dev` or `yarn dev`
+3. Open `localhost:3000` in the browser

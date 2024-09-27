@@ -1,0 +1,291 @@
+@mixin setSpacing ($desktop, $medium, $mobile, $spacingName, $spacingNameShort, $unitName) {
+
+  @if ( $desktop == 'auto' ) {
+    $unitName: '';
+  }
+
+  .#{$spacingNameShort}-#{$desktop} {
+    #{$spacingName}: #{$desktop}#{$unitName};
+    @if ($medium) {
+      @include medium {
+        #{$spacingName}: #{$medium}#{$unitName};
+      }
+    }
+    @if ($mobile) {
+      @include phone {
+        #{$spacingName}: #{$mobile}#{$unitName};
+      }
+    }
+  }
+
+  .#{$spacingNameShort}-#{$desktop} {
+    #{$spacingName}: #{$desktop}#{$unitName};
+    @if ($medium) {
+      @include medium {
+        #{$spacingName}: #{$medium}#{$unitName};
+      }
+    }
+    @if ($mobile) {
+      @include phone {
+        #{$spacingName}: #{$mobile}#{$unitName};
+      }
+    }
+  }
+  .#{$spacingNameShort}x-#{$desktop} {
+    #{$spacingName}-left: #{$desktop}#{$unitName};
+    #{$spacingName}-right: #{$desktop}#{$unitName};
+    @if ($medium) {
+      @include medium {
+        #{$spacingName}-left: #{$medium}#{$unitName};
+        #{$spacingName}-right: #{$medium}#{$unitName};
+      }
+    }
+    @if ($mobile) {
+      @include phone {
+        #{$spacingName}-left: #{$mobile}#{$unitName};
+        #{$spacingName}-right: #{$mobile}#{$unitName};
+      }
+    }
+  }
+  .#{$spacingNameShort}y-#{$desktop} {
+    #{$spacingName}-top: #{$desktop}#{$unitName};
+    #{$spacingName}-bottom: #{$desktop}#{$unitName};
+    @if ($medium) {
+      @include medium {
+        #{$spacingName}-top: #{$medium}#{$unitName};
+        #{$spacingName}-bottom: #{$medium}#{$unitName};
+      }
+    }
+    @if ($mobile) {
+      @include phone {
+        #{$spacingName}-top: #{$mobile}#{$unitName};
+        #{$spacingName}-bottom: #{$mobile}#{$unitName};
+      }
+    }
+  }
+  .#{$spacingNameShort}t-#{$desktop} {
+    #{$spacingName}-top: #{$desktop}#{$unitName};
+    @if ($medium) {
+      @include medium {
+        #{$spacingName}-top: #{$medium}#{$unitName};
+      }
+    }
+    @if ($mobile) {
+      @include phone {
+        #{$spacingName}-top: #{$mobile}#{$unitName};
+      }
+    }
+  }
+  .#{$spacingNameShort}b-#{$desktop} {
+    #{$spacingName}-bottom: #{$desktop}#{$unitName};
+    @if ($medium) {
+      @include medium {
+        #{$spacingName}-bottom: #{$medium}#{$unitName};
+      }
+    }
+    @if ($mobile) {
+      @include phone {
+        #{$spacingName}-bottom: #{$mobile}#{$unitName};
+      }
+    }
+  }
+  .#{$spacingNameShort}l-#{$desktop} {
+    #{$spacingName}-left: #{$desktop}#{$unitName};
+    @if ($medium) {
+      @include medium {
+        #{$spacingName}-left: #{$medium}#{$unitName};
+      }
+    }
+    @if ($mobile) {
+      @include phone {
+        #{$spacingName}-left: #{$mobile}#{$unitName};
+      }
+    }
+  }
+  .#{$spacingNameShort}r-#{$desktop} {
+    #{$spacingName}-right: #{$desktop}#{$unitName};
+    @if ($medium) {
+      @include medium {
+        #{$spacingName}-right: #{$medium}#{$unitName};
+      }
+    }
+    @if ($mobile) {
+      @include phone {
+        #{$spacingName}-right: #{$mobile}#{$unitName};
+      }
+    }
+  }
+}
+
+@mixin setMargin ($desktop, $medium, $mobile) {
+  $spacingName: margin;
+  $spacingNameShort: m;
+  $unitName: px;
+  @include setSpacing($desktop, $medium, $mobile, $spacingName, $spacingNameShort, $unitName);
+}
+
+@mixin setPadding ($desktop, $medium, $mobile) {
+  $spacingName: padding;
+  $spacingNameShort: p;
+  $unitName: px;
+  @include setSpacing($desktop, $medium, $mobile, $spacingName, $spacingNameShort, $unitName);
+}
+
+@mixin marginGenerator($marginList) {
+
+  @for $i from 0 to length($marginList) {
+
+    $desktopVal: map-get( nth($marginList, $i+1), 'desktop' );
+    $mediumVal: map-get( nth($marginList, $i+1), 'medium' );
+    $mobileVal: map-get( nth($marginList, $i+1), 'mobile' );
+
+    @include setMargin($desktopVal, $mediumVal, $mobileVal);
+
+  }
+}
+
+@mixin paddingGenerator($paddingList) {
+
+  @for $i from 0 to length($paddingList) {
+
+    $desktopVal: map-get( nth($paddingList, $i+1), 'desktop' );
+    $mediumVal: map-get( nth($paddingList, $i+1), 'medium' );
+    $mobileVal: map-get( nth($paddingList, $i+1), 'mobile' );
+
+    @include setPadding($desktopVal, $mediumVal, $mobileVal);
+  }
+}
+
+@mixin fontWeightGenerator ($fontWeightList) {
+  @each $name, $val in $fontWeightList {
+    .fw-#{"" + $name + ""} {
+      font-weight: $val;
+    }
+  }
+}
+
+@mixin fontSizeGenerator ($fontSizeList) {
+  @for $i from 0 to length($fontSizeList) {
+
+    $desktopVal: map-get( nth($fontSizeList, $i+1), 'desktop' );
+    $mobileVal: map-get( nth($fontSizeList, $i+1), 'mobile' );
+    $lineHeight: map-get( nth($fontSizeList, $i+1), 'lineHeight' );
+
+    @if $desktopVal {
+      @if $lineHeight {
+        .fz-#{$desktopVal}_lh-#{str-replace($lineHeight, '.', '-')} {
+          font-size: #{$desktopVal}px;
+          line-height: calc( #{$lineHeight} * 1 );
+        }
+      } @else {
+        .fz-#{$desktopVal} {
+          font-size: #{$desktopVal}px;
+        }
+      }
+    }
+
+    @if $mobileVal {
+      @if $lineHeight {
+        .fz-#{$desktopVal}-to-#{$mobileVal}_lh-#{str-replace($lineHeight, '.', '-')} {
+          font-size: #{$desktopVal}px;
+          line-height: calc( #{$lineHeight} * 1 );
+          @include phone {
+            font-size: #{$mobileVal}px;
+          }
+        }
+      } @else {
+        .fz-#{$desktopVal}-to-#{$mobileVal} {
+          font-size: #{$desktopVal}px;
+          @include phone {
+            font-size: #{$mobileVal}px;
+          }
+        }
+      }
+
+    }
+
+  }
+}
+
+@mixin genPg ($angle: 30, $trans: '', $radius: 30, $radiusSpec: false) {
+
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+
+  background-color: purple;
+  transform: skew(#{$angle}deg) #{$trans};
+
+  @if $radiusSpec == false {
+    border-radius: #{$radius}px;
+  } @else {
+    $radiusBig: $radius;
+    $radiusSmall: calc($radiusBig / 4.5);
+    @if $angle < 0 {
+      border-top-right-radius: #{$radiusBig}px;
+      border-bottom-left-radius: #{$radiusBig}px;
+
+      border-top-left-radius: #{$radiusSmall}px;
+      border-bottom-right-radius: #{$radiusSmall}px;
+    } @else  {
+      border-top-right-radius: #{$radiusSmall}px;
+      border-bottom-left-radius: #{$radiusSmall}px;
+
+      border-top-left-radius: #{$radiusBig}px;
+      border-bottom-right-radius: #{$radiusBig}px;
+    }
+  }
+
+  @content;
+}
+
+@mixin fireSprite ($width, $stepCount) {
+  display: flex;
+  width: #{$width}px;
+  height: auto;
+  aspect-ratio: 200 / 300;
+
+  animation-name: fireAnimSprite#{$width};
+  animation-duration: 1.2s;
+  animation-delay: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(#{$stepCount});
+  animation-fill-mode: forwards;
+  animation-direction: normal;
+  animation-play-state: running;
+
+  background-image: url('../../images/base/fire-sprite-2.png');
+  background-position: 0 0;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+
+  position: absolute;
+  top: 100px;
+  left: 190px;
+
+  @keyframes fireAnimSprite#{$width} {
+    0% {
+      background-position-x: 0;
+    }
+    100% {
+      background-position-x: (#{ calc(100 / $stepCount) * calc($stepCount + 1) + 1}) + "%";
+    }
+  }
+  @content;
+}
+
+@mixin scaleMedia ($defStyle: true) {
+  @media screen and (min-width: 1000px) and (max-width: 1400px) {
+    @if $defStyle {
+      transform: scale(0.7);
+      width: 142.8%;
+      margin-bottom: -3137px;
+    }
+    @content
+  }
+}

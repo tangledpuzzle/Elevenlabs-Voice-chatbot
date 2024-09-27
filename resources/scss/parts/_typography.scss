@@ -1,0 +1,106 @@
+
+@include fontSizeGenerator($fontSizeList);
+@include fontWeightGenerator($fontWeightList);
+
+h1,h2,h3 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.lh-auto {
+  line-height: $lhAuto;
+}
+
+.lh-default {
+  line-height: $lhDefault;
+}
+
+.lh-small {
+  line-height: $lhSmall;
+}
+
+/* Font Colors */
+.fc-white {
+  color: $colorWhite;
+}
+.fc-dark {
+  color: $colorDark;
+}
+.fc-accent {
+  color: $colorAccent;
+}
+
+.fc-chart-blue-1 {
+  color: #5581CA;
+}
+
+.fc-chart-blue-2 {
+  color: #8EAAF0;
+}
+
+
+/* Font Styles */
+h2 {
+  font-weight: $bold;
+  //@extend .fz-32;
+  //@extend .lh-default;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
+
+  span {
+    font-weight: $light;
+  }
+
+}
+
+h3 {
+  font-weight: $extra-bold;
+  font-size: 24px;
+  @extend .lh-default;
+}
+
+sup {
+  font-size: 57%;
+}
+
+.wrap-all {
+  word-break: break-all;
+  color: inherit;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-center--force {
+  text-align: center;
+  width: 100%;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.c-blue {
+  color: #001489;
+}

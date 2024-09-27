@@ -1,0 +1,19 @@
+@mixin fw($weight: normal) {
+  font-weight: map-get($fontWeights, $weight);
+}
+
+@mixin medium {
+  @media (max-width: $xl) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: $md) {
+    @content;
+  }
+}
+@mixin phone {
+  @media (max-width: $sm) {
+    @content;
+  }
+}
